@@ -1,0 +1,15 @@
+name: dispoli-webserver
+version: 0.1.0
+
+authors:
+  - Hanazono <142830863+Hanazono-Yurine@users.noreply.github.com>
+
+targets:
+  dispoli:
+    main: src/dispoli.cr
+
+dependencies:
+
+crystal: 1.9.2
+
+license: MIT
