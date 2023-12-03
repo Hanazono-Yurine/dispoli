@@ -1,18 +1,37 @@
 *{
-    background-color: #160e65;
-
-
+	background-color: #160e65;
 }
 .Caixa{
-    display:flex;
-    align-items:center;
-    flex-direction:column;
-  
-    height: 600px;
-    width: 500px;
-    background-color:#160e65 ;
-    border: 2px solid #d3aa23;
-    border-radius: 10px;
-    color: aliceblue;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 
+	height: 600px;
+	width: 500px;
+	padding: 5%;
+	background-color: #160e65 ;
+	border: 2px solid #d3aa23;
+	border-radius: 10px;
+	color: aliceblue;
+
+}
+
+.card{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-around;
+
+	width: 95%;
+	background-color: #160e65 ;
+	border: 2px solid #d3aa23;
+	border-radius: 10px;
+	color: yellow;
+
+}
+
+.container{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }
