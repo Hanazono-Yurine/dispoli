@@ -28,26 +28,10 @@ class Sptrans
 		return false
 	end
 
-	def get_headers()
 		headers = HTTP::Headers.new
 		headers.add("Cookie", "apiCredentials=#{@auth_cookie}")
 	end
 
-	def get_line_arrive_prediction(lineCode : String)
 		return Nil if !login?
-		response = HTTP::Client.get("http://#{@link}/Previsao/Linha?codigoLinha=#{lineCode}", get_headers())
-		JsonParser.push_to_map(response.body)
-	end
-
-	def get_line_position(lineCode : String)
-		return Nil if !login?
-		response = HTTP::Client.get("http://#{@link}/Posicao/Linha?codigoLinha=#{lineCode}", get_headers())
-		JsonParser.push_to_map(response.body)
-	end
-
-	def get_line_stops(lineCode : String)
-		return Nil if !login?
-		response = HTTP::Client.get("http://#{@link}/Parada/BuscarParadasPorLinha?codigoLinha=#{lineCode}", get_headers())
-		JsonParser.push_to_map(response.body)
 	end
 end
