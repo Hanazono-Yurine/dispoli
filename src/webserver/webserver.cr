@@ -1,19 +1,32 @@
 require "http"
 require "http/server"
 require "http/server/handler"
+require "../sptrans_api.cr"
 
 module Webserver
-	public_file_handler = HTTP::StaticFileHandler.new("./webserver/files/public")
+	class Handlers
+		getter sptrans_api
+		def initialize(sptrans_api_token : String)
+			@sptrans_api = Sptrans.new sptrans_api_token
+			@sockets_list = [] of HTTP::WebSocket
 
-	server = HTTP::Server.new do |context|
-		if context.request.path.ends_with?("/")
-			context.request.path=(context.request.path + "index.htm")
+			@public_file_handler = HTTP::StaticFileHandler.new("./src/webserver/files/public")
 		end
-		public_file_handler.call(context)
-	end
 
-	address = server.bind_tcp 8080
-	#puts "Listening on http://#{address}"
-	#server.listen
+		def url_type(context)
+			if context.request.path == "/get/arrive"
+				context.response.content_type = "application/json"
+				context.response.print @sptrans_api.arrive_time_json
+				return
+			end
+			if context.request.path.ends_with?("/")
+				context.request.path=(context.request.path + "index.html")
+				@public_file_handler.call(context)
+				return
+			else
+				@public_file_handler.call(context)
+			end
+		end
+	end
 
 end
