@@ -7,7 +7,7 @@ module JsonParser
 		data = Hash(String, JSON::Any).from_json(json)
 		better_json = [] of JSON::Any
 		i = 0
-		while i < 3
+		while i < data["p"]["l"].size
 			arriveJsonString = JSON.build do |json|
 				json.object do
 					json.field "bus", data["p"]["l"][i]["c"]
